@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prices</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="prices.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header class="header" aria-label="Site Header">
+
+        <nav class="nav-container" aria-label="Primary Navigation">
+            <div>
+                <a href="#">
+                <i class="fa-solid fa-arrow-trend-up logo-icon"></i>
+                <span class="icon-text">CryptoTracker</span>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Open navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i><span>Home</span></a>
+                <a href="prices.html" class="nav-link active"><i class="fa-solid fa-arrow-trend-up"></i><span>Prices</span> </a>
+                <a href="nfts.html" class="nav-link"><i class="fa-solid fa-image"></i><span>NFTs</span> </a>
+                <a href="list.html" class="nav-link"><i class="fa-solid fa-heart"></i><span>List</span></a>
+            </div>
+        </nav>
+    </header>
+    <main class="main-content" aria-label="Main Content">
+        <section class="hero-section">
+             <div class="currency-card">
+                <div class="currency-description">
+                    <h2 class="currency-title">Live <span>Crypto Prices</span></h2>
+                    <p class="currency-para">Track real-time cryptocurrency prices, market cap, and trading volume for all major digital assets.</p>
+                </div>
+            </div>
+        </section>
+        <section class="global-data-section" aria-label="Global Crypto Data">
+            <div class="global-data-cards" id="global-data-cards">
+                <!-- Dynamic content will be inserted here by JavaScript -->
+            </div>
+
+        </section>
+        <section class="currencies-section">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="search-input" placeholder="Search Cryptocurrency..." aria-label="Search Cryptocurrency" class="search-input">
+            </div>
+            <div class="currency-cards-container" id="currency-cards-container">
+                <!-- Dynamic content will be inserted here by JavaScript -->
+            </div>
+            <div class="load-more-container">
+            <button class="load-more-btn" id="load-more-btn">Load More Cryptocurrencies</button>
+            </div>
+        </section>
+    </main>
+    <script src="prices.js"></script>
+</body>
+</html>

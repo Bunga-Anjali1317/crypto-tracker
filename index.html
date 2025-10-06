@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto-Tracker</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header" aria-label="Site Header">
+
+        <nav class="nav-container" aria-label="Primary Navigation">
+            <div>
+                <a href="#">
+                <i class="fa-solid fa-arrow-trend-up logo-icon"></i>
+                <span class="icon-text">CryptoTracker</span>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Open navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i><span>Home</span></a>
+                <a href="prices.html" class="nav-link"><i class="fa-solid fa-arrow-trend-up"></i><span>Prices</span> </a>
+                <a href="nfts.html" class="nav-link"><i class="fa-solid fa-image"></i><span>NFTs</span> </a>
+                <a href="list.html" class="nav-link"><i class="fa-solid fa-heart"></i><span>List</span></a>
+            </div>
+        </nav>
+    </header>
+    <main class="main-content" aria-label="Main Content">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Track Crypto,<br>
+                    NFTs & Digital Assests</br></h1>
+                <h4>Explore live stock prices, market trends, and investment insights on our professional platform designed for the future of finance.</h4>
+                <div class="hero-buttons">
+                    <a href="prices.html" class="btn btn-primary">View Live Prices <i class="fa-solid fa-arrow-trend-up"></i></a>
+                    <a href="nfts.html" class="btn btn-secondary">Explore NFTs <i class="fa-solid fa-chart-line"></i></a>
+                </div>
+                <div class="hero-highlights">
+                    <div class="highlight-item">
+                        <h3 class="highlight-title">5000+</h3>
+                        <p class="highlight-text">Cryptocurrencies</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h3 class="highlight-title title-color1">24/7</h3>
+                        <p class="highlight-text">Real-time Updates</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h3 class="highlight-title title-color2">99.9%</h3>
+                        <p class="highlight-text">Uptime</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="currencies-section">
+            <div class="currency-card">
+                <div class="currency-description">
+                    <h2 class="currency-title">Top <span>Cryptocurrencies</span></h2>
+                    <p class="currency-para">Monitor the most popular digital assets with real-time prices, market trends, and performance metrics.</p>
+                </div>
+            </div>
+            <div class="currency-cards-container" id="currency-cards-container">
+                <!-- Dynamic content will be inserted here by JavaScript -->
+            </div>
+            <div class="view-more-container">
+                <a href="prices.html" class="btn-view-more"><i class="fa-regular fa-eye"></i> View All Cryptocurrencies</a>
+            </div>
+        </section>
+        <section class="global-data-section" aria-label="Global Crypto Data">
+            <div class="global-data-cards" id="global-data-cards">
+                <!-- Dynamic content will be inserted here by JavaScript -->
+            </div>
+
+        </section>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>

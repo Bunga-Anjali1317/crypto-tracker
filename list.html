@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist NFTs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="nfts.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header class="header" aria-label="Site Header">
+        <nav class="nav-container" aria-label="Primary Navigation">
+            <div>
+                <a href="nfts.html">
+                <i class="fa-solid fa-arrow-trend-up logo-icon"></i>
+                <span class="icon-text">CryptoTracker</span>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Open navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i><span>Home</span></a>
+                <a href="prices.html" class="nav-link"><i class="fa-solid fa-arrow-trend-up"></i><span>Prices</span> </a>
+                <a href="nfts.html" class="nav-link"><i class="fa-solid fa-image"></i><span>NFTs</span> </a>
+                <a href="list.html" class="nav-link active"><i class="fa-solid fa-heart"></i><span>List</span></a>
+            </div>
+        </nav>
+    </header>
+    <main class="main-content" aria-label="Main Content">
+        <section class="hero-section">
+            <div class="hero-nft-card">
+                <div class="nft-description">
+                    <h2 class="nft-title">Your <span>Wishlist</span></h2>
+                    <p class="nft-para">All the NFTs you have wishlisted are shown here. Remove any by clicking the heart icon.</p>
+                </div>
+            </div>
+        </section>
+        <section class="nft-section" aria-label="Wishlist NFTs">
+            <div class="nft-cards-container" id="wishlist-cards-container">
+                <!-- Wishlist NFTs will be rendered here -->
+            </div>
+        </section>
+    </main>
+    <script>
+const apiKey = "pbwbU_FufZVNdRDBixcHQ"; // Alchemy API Key
+const collectionAddress = "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d"; // BAYC
+
+function getWishlist() {
+    let arr = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    if (!Array.isArray(arr)) arr = [];
+    return arr;
+}
+function setWishlist(wishlist) {
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+}
+function formatIPFS(url) {
+    if (!url) return '';
+    if (url.startsWith("ipfs://")) {
+        return "https://ipfs.io/ipfs/" + url.slice(7);
+    }
+    return url;
+}
+function removeFromWishlist(tokenId) {
+    let wishlist = getWishlist();
+    wishlist = wishlist.filter(id => id !== tokenId);
+    setWishlist(wishlist);
+    // Re-render after removal
+    fetchAndRenderWishlistNFTs();
+}
+
+async function fetchAllNFTs() {
+    const url = `https://eth-mainnet.g.alchemy.com/v2/${apiKey}/getNFTsForCollection?contractAddress=${collectionAddress}&withMetadata=true`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.nfts || [];
+}
+
+async function fetchAndRenderWishlistNFTs() {
+    const container = document.getElementById('wishlist-cards-container');
+    const wishlist = getWishlist();
+    const allNFTs = await fetchAllNFTs();
+    // Filter NFTs whose tokenId is in wishlist
+    const wishlistedNFTs = allNFTs.filter(nft => wishlist.includes(parseInt(nft.id.tokenId, 16)));
+    if (wishlistedNFTs.length === 0) {
+        container.innerHTML = "<p style='color:white;text-align:center;'>No NFTs in your wishlist.</p>";
+        return;
+    }
+    container.innerHTML = '';
+    wishlistedNFTs.forEach(nft => {
+        const tokenId = parseInt(nft.id.tokenId, 16);
+        const image = formatIPFS(nft.metadata?.image) || nft.media?.[0]?.gateway || "";
+        const name = nft.metadata?.name || nft.contractMetadata?.name || 'Unnamed NFT';
+        const symbol = nft.contractMetadata?.symbol || '';
+        const attributesHTML = nft.metadata?.attributes?.map(attr => `
+            <span class="nft-attribute">${attr.trait_type}: ${attr.value}</span>
+        `).join('') || '';
+        const card = document.createElement('div');
+        card.className = 'nft-card';
+        card.innerHTML = `
+            <div class="nft-rank">NFT #${tokenId}</div>
+            <div class="nft-image-container">
+                <img src="${image}" alt="${name}" class="nft-image">
+            </div>
+            <h3 class="nft-name">${name} <span class="nft-symbol">(${symbol})</span></h3>
+            <div class="nft-attributes">${attributesHTML}</div>
+            <div class="nft-actions">
+                <a href="https://opensea.io/assets/ethereum/${collectionAddress}/${tokenId}" target="_blank" class="view-button">
+                    View on OpenSea
+                </a>
+                <button class="wishlist-button liked" onclick="removeFromWishlist(${tokenId})">
+                    <i class="fa-solid fa-heart" style="color:green"></i>
+                </button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// Initial render
+fetchAndRenderWishlistNFTs();
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const hamburger = document.getElementById('hamburger-btn');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('show');
+        });
+        navLinks.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('show'));
+        });
+    }
+});
+</script>
+</body>
+</html>

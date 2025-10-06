@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFTs Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="nfts.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header class="header" aria-label="Site Header">
+
+        <nav class="nav-container" aria-label="Primary Navigation">
+            <div>
+                <a href="#">
+                <i class="fa-solid fa-arrow-trend-up logo-icon"></i>
+                <span class="icon-text">CryptoTracker</span>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Open navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i><span>Home</span></a>
+                <a href="prices.html" class="nav-link"><i class="fa-solid fa-arrow-trend-up"></i><span>Prices</span> </a>
+                <a href="nfts.html" class="nav-link active"><i class="fa-solid fa-image"></i><span>NFTs</span> </a>
+                <a href="list.html" class="nav-link"><i class="fa-solid fa-heart"></i><span>List</span></a>
+            </div>
+        </nav>
+    </header>
+    <main class="main-content" aria-label="Main Content">
+        <section class="hero-section">
+             <div class="hero-nft-card">
+                <div class="nft-description">
+                    <h2 class="nft-title">NFT <span>MarketPlace</span></h2>
+                    <p class="nft-para">Discover, collect, and trade unique digital assets from the world's top NFT collections.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="nft-section" aria-label="NFT Collections">
+            <div class="nft-cards-container" id="nft-cards-container">
+                <!-- Dynamic content will be inserted here by JavaScript -->
+            </div>
+            <div class="load-more-container">
+            <button class="load-more-btn" id="load-more-btn">Load More NFTs</button>
+            </div>
+        </section>
+    </main>
+    <script src="nfts.js"></script>
+</body>
+</html>
